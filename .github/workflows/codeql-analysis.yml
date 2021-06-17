@@ -1,0 +1,31 @@
+name: "Isovalent Guardrails"
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+  push:
+    branches:
+      - master
+      - main
+      
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-20.04    
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://quay.io/isovalent/policy-guardrails:v0.1.1
+        with:
+          args: node -- /app/app.js --policies ./policies/clusterwide.yaml --guardrails ./guardrails.yaml --format github --output ./report.sarif
+      - uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ./report.sarif

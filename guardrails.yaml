@@ -1,0 +1,22 @@
+apiVersion: isovalent.com/v1beta
+kind: CiliumNetworkPolicyGuardrails
+metadata:
+  name: global-network-policy-guardrails
+specs:
+  - description: 'Guardrails for endpoints in the cluster'
+    endpointSelector:
+      matchLabels:
+        app: frontend
+    rules:
+      defaultDenyIngress: true # require default deny for ingress
+      defaultDenyEgress: true # require default deny for egress
+      noAllowAll: true # forbid use of allow all rule
+      noEgressToWorld: true # forbid allowing egress to world or 0.0.0.0/0 cidr
+      noEgressToCluster: true # forbid unrestricted access to entire cluster, unless service is exposed via type LoadBalancer services
+      approvedEgress:
+        - cidr: 10.0.0.0/8
+        - cidr: 192.168.0.0/16
+        - fqdn: '*.isovalent.com'
+        - fqdn: 'cilium.io'
+        - labels:
+            app: backend
