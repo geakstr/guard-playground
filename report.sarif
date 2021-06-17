@@ -1,0 +1,156 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Isovalent",
+          "semanticVersion": "0.1.0",
+          "rules": [
+            {
+              "id": "defaultDenyIngress",
+              "name": "defaultDenyIngress",
+              "shortDescription": {
+                "text": "defaultDenyIngress"
+              },
+              "fullDescription": {
+                "text": "defaultDenyIngress"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "maintainability"
+                ],
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "defaultDenyEgress",
+              "name": "defaultDenyEgress",
+              "shortDescription": {
+                "text": "defaultDenyEgress"
+              },
+              "fullDescription": {
+                "text": "defaultDenyEgress"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "maintainability"
+                ],
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "allowedEgressToCluster",
+              "name": "allowedEgressToCluster",
+              "shortDescription": {
+                "text": "allowedEgressToCluster"
+              },
+              "fullDescription": {
+                "text": "allowedEgressToCluster"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "maintainability"
+                ],
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "allowedFqdns",
+              "name": "allowedFqdns",
+              "shortDescription": {
+                "text": "allowedFqdns"
+              },
+              "fullDescription": {
+                "text": "allowedFqdns"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "maintainability"
+                ],
+                "precision": "very-high"
+              }
+            },
+            {
+              "id": "deniedFqdn/0",
+              "name": "deniedFqdn",
+              "shortDescription": {
+                "text": "deniedFqdn"
+              },
+              "fullDescription": {
+                "text": "deniedFqdn"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "maintainability"
+                ],
+                "precision": "very-high"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "defaultDenyIngress",
+          "message": {
+            "text": "defaultDenyIngress: [{\"allEndpointsInNamespace\":true}]"
+          }
+        },
+        {
+          "ruleId": "defaultDenyEgress",
+          "message": {
+            "text": "defaultDenyEgress: [{\"allEndpointsInNamespace\":true}]"
+          }
+        },
+        {
+          "ruleId": "allowedEgressToCluster",
+          "message": {
+            "text": "allowedEgressToCluster: [{\"allEndpointsInNamespace\":true}]"
+          }
+        },
+        {
+          "ruleId": "allowedFqdns",
+          "message": {
+            "text": "allowedFqdns: [{\"fqdn\":\"google.com\",\"endpoints\":[{\"allEndpointsInNamespace\":true}]}]"
+          }
+        },
+        {
+          "ruleId": "deniedFqdn/0",
+          "message": {
+            "text": "deniedFqdn: {\"ruleKind\":\"deniedFqdn\",\"endpointSelector\":{},\"location\":{\"file\":\".policies/clusterwide.yaml\",\"start_line\":14,\"end_line\":18},\"match\":{\"fqdn\":\"google.com\"}}"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".policies/clusterwide.yaml"
+                },
+                "region": {
+                  "startLine": 14,
+                  "endLine": 18
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
