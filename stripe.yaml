@@ -1,0 +1,18 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: tenant-a-policy
+  namespace: tenant-a
+spec:
+  endpointSelector: {}
+  ingress:
+    - fromEndpoints:
+        - {}
+  egress:
+    - toEndpoints:
+        - {}
+    - toFQDNs:
+        - matchName: stripe.com
+      toPorts:
+        - ports:
+            - port: '80'
