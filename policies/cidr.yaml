@@ -1,0 +1,23 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: cidr-policy
+  namespace: tenant-a
+spec:
+  endpointSelector: {}
+  egress:
+    - toCIDR:
+        - 8.8.8.8/24
+      toPorts:
+        - ports:
+            - port: '25565'
+    - toCIDR:
+        - 192.168.0.0/8
+      toPorts:
+        - ports:
+            - port: '443'
+    - toCIDR:
+        - 192.168.0.1/32
+      toPorts:
+        - ports:
+            - port: '8080'
