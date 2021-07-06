@@ -12,7 +12,7 @@ spec:
     - toEndpoints:
         - {}
     - toFQDNs:
-        - matchName: google.com
+        - matchName: api.google.com
       toPorts:
         - ports:
             - port: '80'
