@@ -27,7 +27,6 @@ specs:
         app: api
     rules:
       approvedEgress:
-        - fqdn: 'api.twitter.com'
         - fqdn: 'api.github.com'
         - labels:
             app: payment
