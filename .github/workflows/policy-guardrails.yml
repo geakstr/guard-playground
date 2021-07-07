@@ -19,7 +19,7 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
-      - uses: docker://quay.io/isovalent/policy-guardrails-ci:7f33ae25a1e2bde7bf48e94139daff6dd669369c
+      - uses: docker://quay.io/isovalent/policy-guardrails-ci:a10e2e97c654ee5184fa85ae3076e6e3d0cc8bda
         with:
           args: node -- /app/app.js --policies ./policies/*.yaml --guardrails ./guardrails.yaml --format github --output ./results.sarif
       - uses: github/codeql-action/upload-sarif@v1
