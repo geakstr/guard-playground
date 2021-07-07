@@ -9,6 +9,8 @@ spec:
       app: api
   egress:
     - toFQDNs:
+        - matchName: s3.aws.com
+    - toFQDNs:
         - matchName: api.github.com
       toPorts:
         - ports:
