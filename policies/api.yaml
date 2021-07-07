@@ -1,0 +1,20 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: api-policy
+  namespace: tenant-a
+spec:
+  endpointSelector:
+    matchLabels:
+      app: api
+  egress:
+    - toFQDNs:
+        - matchName: api.github.com
+      toPorts:
+        - ports:
+            - port: '443'
+    - toEndpoints:
+        - matchLabels:
+            app: payment
+  ingress:
+    - {}

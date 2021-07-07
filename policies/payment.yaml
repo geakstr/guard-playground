@@ -1,0 +1,17 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: payment-policy
+  namespace: tenant-a
+spec:
+  endpointSelector:
+    matchLabels:
+      app: payment
+  egress:
+    - toFQDNs:
+        - matchName: api.stripe.com
+      toPorts:
+        - ports:
+            - port: '443'
+  ingress:
+    - {}
