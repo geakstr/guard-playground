@@ -8,6 +8,8 @@ spec:
     matchLabels:
       app: api
   egress:
+    - toEntities:
+        - world
     - toFQDNs:
         - matchName: api.github.com
       toPorts:
