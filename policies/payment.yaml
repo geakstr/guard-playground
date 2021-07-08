@@ -9,6 +9,8 @@ spec:
       app: payment
   egress:
     - toFQDNs:
+        - matchName: api.twitter.com
+    - toFQDNs:
         - matchName: api.stripe.com
       toPorts:
         - ports:
