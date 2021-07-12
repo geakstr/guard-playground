@@ -10,6 +10,9 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
+            app: payment
+    - toEndpoints:
+        - matchLabels:
             app: api
   ingress:
     - {}
