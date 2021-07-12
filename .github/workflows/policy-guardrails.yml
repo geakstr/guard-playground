@@ -18,10 +18,16 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - uses: actions/checkout@v2
-      - uses: docker://quay.io/isovalent/policy-guardrails-ci:56aab21424db0e31d35f1026127ae1e289cf96c8
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Run Isovalent Guardrails 
+        uses: docker://quay.io/isovalent/policy-guardrails-ci:56aab21424db0e31d35f1026127ae1e289cf96c8
         with:
           args: node -- /app/app.js --policies ./policies/*.yaml --guardrails ./.github/guardrails.yaml --format github --output ./results.sarif
-      - uses: github/codeql-action/upload-sarif@v1
+      
+      - name: Upload results
+        if: ${{ always() }}
+        uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: results.sarif
