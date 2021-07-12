@@ -1,0 +1,40 @@
+apiVersion: isovalent.com/v1beta
+kind: CiliumNetworkPolicyGuardrails
+metadata:
+  name: global-network-policy-guardrails
+specs:
+  - description: 'Base network policy guardrails'
+    endpointSelector: {}
+    rules:
+      defaultDenyIngress: true
+      defaultDenyEgress: true
+      noAllowAll: true
+      noEgressToWorld: true
+      noEgressToCluster: true
+
+  - description: 'app=frontend selector'
+    endpointSelector:
+      matchLabels:
+        app: frontend
+    rules:
+      approvedEgress:
+        - labels:
+            app: api
+
+  - description: 'app=api selector'
+    endpointSelector:
+      matchLabels:
+        app: api
+    rules:
+      approvedEgress:
+        - fqdn: 'api.github.com'
+        - labels:
+            app: payment
+
+  - description: 'app=payment selector'
+    endpointSelector:
+      matchLabels:
+        app: payment
+    rules:
+      approvedEgress:
+        - fqdn: 'api.stripe.com'
