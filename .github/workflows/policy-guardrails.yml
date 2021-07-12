@@ -1,4 +1,4 @@
-name: "Isovalent Guardrails"
+name: "Analyze"
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       
 jobs:
   analyze:
-    name: Analyze
+    name: Isovalent Guardrails
     runs-on: ubuntu-20.04    
     permissions:
       actions: read
