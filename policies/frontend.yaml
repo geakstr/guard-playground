@@ -11,5 +11,8 @@ spec:
     - toEndpoints:
         - matchLabels:
             app: api
+    - toEndpoints:
+        - matchLabels:
+            app: api
   ingress:
     - {}
