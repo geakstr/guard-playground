@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: docker://quay.io/isovalent/policy-guardrails-ci:be9a3331423034df39c0bc9fd69ce33f7d7e8663
         with:
-          args: node -- /app/app.js --policies ./policies/*.yaml --guardrails ./guardrails.yaml --format github --output ./results.sarif
+          args: node -- /app/app.js --policies ./policies/*.yaml --guardrails ./.github/guardrails.yaml --format github --output ./results.sarif
       - uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: results.sarif
