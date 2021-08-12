@@ -1,0 +1,15 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: guardrails-stimmerman
+  namespace: stimmerman
+spec:
+  endpointSelector:
+    matchLabels:
+      app: stimmie
+  egress:
+    - toFQDNs:
+        - matchPattern: "stimmerman.com"
+      toPorts:
+        - ports:
+            - port: "443"
